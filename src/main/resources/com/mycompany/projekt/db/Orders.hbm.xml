@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-11-29 19:53:27 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.mycompany.projekt.db.Orders" table="ORDERS" schema="C##SSI_DB">
+        <id name="orderId" type="int">
+            <column name="ORDER_ID" scale="0" />
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"> 
+                <param name="prefer_sequence_per_entity">true</param> 
+                <param name="optimizer">none</param>
+                <param name="increment_size">1</param>
+                <param name="sequence_name">orders_seq</param>
+            </generator>
+        </id>
+        <many-to-one name="menu" class="com.mycompany.projekt.db.Menu" fetch="select">
+            <column name="MENU_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="userDb" class="com.mycompany.projekt.db.UserDb" fetch="select">
+            <column name="USER_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

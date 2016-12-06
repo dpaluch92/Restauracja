@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-11-29 19:53:27 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.mycompany.projekt.db.UserDb" table="USER_DB" schema="C##SSI_DB">
+        <id name="userId" type="int">
+            <column name="USER_ID" scale="0" />
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"> 
+                <param name="prefer_sequence_per_entity">true</param> 
+                <param name="optimizer">none</param>
+                <param name="increment_size">1</param>
+                <param name="sequence_name">user_db_seq</param>
+            </generator>
+        </id>
+        <property name="userRole" type="int">
+            <column name="USER_ROLE" scale="0" not-null="true" />
+        </property>
+        <property name="userLogin" type="string">
+            <column name="USER_LOGIN" length="20" not-null="true" />
+        </property>
+        <property name="userPassword" type="string">
+            <column name="USER_PASSWORD" length="20" not-null="true" />
+        </property>
+        <property name="userName" type="string">
+            <column name="USER_NAME" length="20" not-null="true" />
+        </property>
+        <property name="userSurname" type="string">
+            <column name="USER_SURNAME" length="20" not-null="true" />
+        </property>
+        <property name="userAge" type="java.lang.Short">
+            <column name="USER_AGE" precision="3" scale="0" />
+        </property>
+        <property name="userGender" type="string">
+            <column name="USER_GENDER" length="1" />
+        </property>
+        <property name="userCity" type="string">
+            <column name="USER_CITY" length="30" />
+        </property>
+        <property name="userAddress" type="string">
+            <column name="USER_ADDRESS" length="30" />
+        </property>
+        <set name="orderses" table="ORDERS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="USER_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.mycompany.projekt.db.Orders" />
+        </set>
+    </class>
+</hibernate-mapping>

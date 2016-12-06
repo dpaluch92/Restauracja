@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-11-29 19:53:27 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.mycompany.projekt.db.Menu" table="MENU" schema="C##SSI_DB">
+        <id name="menuId" type="int">
+            <column name="MENU_ID" scale="0" />
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"> 
+                <param name="prefer_sequence_per_entity">true</param> 
+                <param name="optimizer">none</param>
+                <param name="increment_size">1</param>
+                <param name="sequence_name">menu_seq</param>
+            </generator>
+        </id>
+        <property name="mealName" type="string">
+            <column name="MEAL_NAME" length="30" not-null="true" />
+        </property>
+        <property name="weight" type="short">
+            <column name="WEIGHT" precision="4" scale="0" not-null="true" />
+        </property>
+        <property name="price" type="short">
+            <column name="PRICE" precision="3" scale="0" not-null="true" />
+        </property>
+        <set name="orderses" table="ORDERS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MENU_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.mycompany.projekt.db.Orders" />
+        </set>
+    </class>
+</hibernate-mapping>
