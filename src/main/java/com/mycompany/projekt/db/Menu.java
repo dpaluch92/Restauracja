@@ -9,6 +9,7 @@ import java.util.Set;
  */
 public class Menu implements java.io.Serializable {
 
+    
     private int menuId;
     private String mealName;
     private short weight;

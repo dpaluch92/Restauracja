@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.projekt.dao;
+package com.mycompany.projekt.dao.user;
 
 import com.mycompany.projekt.db.HibernateUtil;
+import com.mycompany.projekt.db.Menu;
 import com.mycompany.projekt.db.UserDb;
+import org.hibernate.HibernateException;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,7 +17,7 @@ import org.hibernate.Transaction;
  *
  * @author Dominik
  */
-public class UserDAO {
+public class TestDAO {
 
     static Session session = null;
 
