@@ -24,7 +24,7 @@
             </select>
             <input type="text" placeholder="Miasto">
             <input type="text" placeholder="Adress">
-             <button type="submit">Submit</button>
+            <button type="submit">Submit</button>
         </form>
     </body>
 </html>
