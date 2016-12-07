@@ -31,5 +31,6 @@ public class UserDAO {
 
         UserDb newUser = new UserDb(3, "tiji", "tiji", "tomek", "paluch");
         insert(newUser);
+        cos tam
     }
 }
