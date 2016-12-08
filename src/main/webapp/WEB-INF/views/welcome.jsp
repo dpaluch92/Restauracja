@@ -26,19 +26,19 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.jsp">Strona główna &nbsp;<span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                        <li><a href="/Paluch/">Strona główna &nbsp;<span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
                         <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Restauracje &nbsp;<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="info.jsp">Informacje &nbsp;<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></li>
-                                <li><a href="galeria.jsp">Galeria &nbsp;<span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a></li>
-                                <li><a href="kontakt.jsp">Kontakt &nbsp;<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a></li>
+                                <li><a href="/Paluch/info">Informacje &nbsp;<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></li>
+                                <li><a href="/Paluch/menu">Menu &nbsp;<span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a></li>
+                                <li><a href="/Paluch/kontakt">Kontakt &nbsp;<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a></li>
                             </ul>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="zarejestruj.jsp">Zarejestruj &nbsp;<span class="glyphicon glyphicon-pencil"></span></a>
-                        <li><a href="zaloguj.jsp">Zaloguj &nbsp;<span class="glyphicon glyphicon-user"></span></a>
+                        <li><a href="/Paluch/zarejestruj">Zarejestruj &nbsp;<span class="glyphicon glyphicon-pencil"></span></a>
+                        <li><a href="/Paluch/zaloguj">Zaloguj &nbsp;<span class="glyphicon glyphicon-user"></span></a>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div><!--/.container-fluid -->

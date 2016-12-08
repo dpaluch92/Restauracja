@@ -1,11 +1,11 @@
 package com.mycompany.projekt.controller;
 
 import com.mycompany.projekt.dao.menu.MenuDAO;
+import com.mycompany.projekt.dao.user.UserDAO;
 import com.mycompany.projekt.db.Menu;
+import com.mycompany.projekt.db.UserDb;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class WelcomeController {
 
-    Map<Integer, Menu> promo = new HashMap<Integer, Menu>();
-
+    List<UserDb> users;
+    List<Menu> menu;
+    
     @RequestMapping(method = RequestMethod.GET)
-    public String sayHello(HttpServletRequest request) {
+    public String welcome(HttpServletRequest request) {
         String widok = "";
 
         List<Menu> newMap = new ArrayList<Menu>();
@@ -29,6 +30,38 @@ public class WelcomeController {
         
         request.setAttribute("promo", newMap);
         widok = "welcome";
+        return widok;
+    }
+    
+    @RequestMapping(value="/admin",method = RequestMethod.GET)
+    public String admin(HttpServletRequest request) throws Exception {
+        String widok = "";
+
+        List<UserDb> newMap = new ArrayList<UserDb>();
+        users = UserDAO.getAllUsers();
+        
+        for (int i = 1; i < users.size()+1; i++) {
+            newMap.add(UserDAO.getUserById(i));
+        } 
+        
+        request.setAttribute("users", newMap);
+        widok = "admin";
+        return widok;
+    }
+    
+    @RequestMapping(value="/menu",method = RequestMethod.GET)
+    public String menu(HttpServletRequest request) throws Exception {
+        String widok = "";
+
+        List<Menu> newMap = new ArrayList<Menu>();
+        menu = MenuDAO.getAllMenu();
+        
+        for (int i = 1; i < menu.size()+1; i++) {
+            newMap.add(MenuDAO.getMenuById(i));
+        } 
+        
+        request.setAttribute("menu", newMap);
+        widok = "menu";
         return widok;
     }
 }
