@@ -36,7 +36,6 @@ public class ZarejestrujController {
         if (result.hasErrors()) {
             return createUser();
         } else {
-
             ModelMap map = new ModelMap();
             List<UserDb> newMap = new ArrayList<UserDb>();
             users = UserDAO.getAllUsers();
@@ -59,5 +58,4 @@ public class ZarejestrujController {
 
         return new ModelAndView("zarejestruj", map);
     }
-
 }
