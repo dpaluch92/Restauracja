@@ -31,8 +31,9 @@ public class UserDb implements java.io.Serializable {
         this.userName = userName;
         this.userSurname = userSurname;
     }
+    
 
-    public UserDb(int userRole, String userLogin, String userPassword, String userName, String userSurname, Short userAge, String userGender, String userCity, String userAddress, Set<Orders> orderses) {
+    public UserDb(int userRole, String userLogin, String userPassword, String userName, String userSurname, Short userAge, String userGender, String userCity, String userAddress) {
         this.userRole = userRole;
         this.userLogin = userLogin;
         this.userPassword = userPassword;
@@ -42,7 +43,6 @@ public class UserDb implements java.io.Serializable {
         this.userGender = userGender;
         this.userCity = userCity;
         this.userAddress = userAddress;
-        this.orderses = orderses;
     }
 
     public int getUserId() {
@@ -53,7 +53,7 @@ public class UserDb implements java.io.Serializable {
         this.userId = userId;
     }
 
-    public int isUserRole() {
+    public int getUserRole() {
         return this.userRole;
     }
 

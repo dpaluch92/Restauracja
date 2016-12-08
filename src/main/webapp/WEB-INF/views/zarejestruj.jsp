@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,43 +28,47 @@
                 <div class="col-sm-6 well">
                     <h2>Formularz rejestracji</h2>
                     <br />
-                    <form>                   
+                    <form:form commandName="userz" method="post" action="/Paluch/zarejestruj" id="userForm" >   
+                        <form:hidden path="userId" id="userId" />
+                        <form:hidden path="userRole" id="userRole" value="3" />
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-log-in"></i></span>
-                            <input type="text" class="form-control" placeholder="Login">
+                                <form:input path="userLogin" id="userLogin" class="form-control" type="text" placeholder="Login"/>
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input type="password" class="form-control" placeholder="Password">
+                                <form:input path="userPassword" id="userPassword" class="form-control" type="password" placeholder="Hasło"/>
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" class="form-control" placeholder="Imie">
+                                <form:input path="userName" id="userName" class="form-control" type="text" placeholder="Imie" />
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" class="form-control" placeholder="Nazwisko">
+                                <form:input path="userSurname" id="userSurname" class="form-control" placeholder="Nazwisko" />
                         </div>
+
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-hourglass"></i></span>
-                            <input type="date" class="form-control" placeholder="Wiek">
+                                <form:input type="number" path="userAge" id="userAge" class="form-control" placeholder="Wiek" />
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <select class="form-control">
-                                <option>Mężczyzna</option>
-                                <option>Kobieta</option>
+                            <select class="form-control" path="userGender" id="userGender" form="userForm">
+                                <option value="M">M</option>
+                                <option value="K">K</option>
                             </select>
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                            <input type="text" class="form-control" placeholder="Miasto">
+                                <form:input path="userCity" id="userCity" class="form-control" placeholder="Miasto"/>
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                            <input type="text" class="form-control" placeholder="Adress">
+                                <form:input type="text" path="userAddress" id="userAddress" class="form-control"  placeholder="Adres"/>
                         </div>
-                    </form>
+                        <input type="submit" class="btn btn-default"  name="saveUser" value="Zarejestruj" />
+                    </form:form>
                 </div>
                 <div class="col-sm-3"></div>
             </div>

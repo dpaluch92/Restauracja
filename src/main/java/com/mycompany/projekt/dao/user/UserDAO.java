@@ -8,7 +8,6 @@ package com.mycompany.projekt.dao.user;
 import com.mycompany.projekt.db.HibernateUtil;
 import com.mycompany.projekt.db.UserDb;
 import java.util.ArrayList;
-import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
@@ -47,11 +46,12 @@ public class UserDAO {
         return data;
     }
 
-    public static void insertUser(UserDb user) {
+    public static UserDb insertUser(UserDb user) {
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         session.save(user);
         tx.commit();
         session.close();
+        return user;
     }
 }
