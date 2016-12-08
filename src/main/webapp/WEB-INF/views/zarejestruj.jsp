@@ -54,10 +54,10 @@
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <select class="form-control" path="userGender" id="userGender" form="userForm">
-                                <option value="M">M</option>
-                                <option value="K">K</option>
-                            </select>
+                            <form:select class="form-control" path="userGender" id="userGender" form="userForm">
+                                <form:option value="M">M</form:option>
+                                <form:option value="K">K</form:option>
+                            </form:select>
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
