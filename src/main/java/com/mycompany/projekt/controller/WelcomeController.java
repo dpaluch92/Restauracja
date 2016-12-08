@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class WelcomeController {
 
     List<UserDb> users;
-    List<Menu> menu;
-    
+
     @RequestMapping(method = RequestMethod.GET)
     public String welcome(HttpServletRequest request) {
         String widok = "";
@@ -27,41 +26,25 @@ public class WelcomeController {
         for (int i = 1; i < 5; i++) {
             newMap.add(MenuDAO.getMenuById(i));
         }
-        
+
         request.setAttribute("promo", newMap);
         widok = "welcome";
         return widok;
     }
-    
-    @RequestMapping(value="/admin",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(HttpServletRequest request) throws Exception {
         String widok = "";
 
         List<UserDb> newMap = new ArrayList<UserDb>();
         users = UserDAO.getAllUsers();
-        
-        for (int i = 1; i < users.size()+1; i++) {
+
+        for (int i = 1; i < users.size() + 1; i++) {
             newMap.add(UserDAO.getUserById(i));
-        } 
-        
+        }
+
         request.setAttribute("users", newMap);
         widok = "admin";
-        return widok;
-    }
-    
-    @RequestMapping(value="/menu",method = RequestMethod.GET)
-    public String menu(HttpServletRequest request) throws Exception {
-        String widok = "";
-
-        List<Menu> newMap = new ArrayList<Menu>();
-        menu = MenuDAO.getAllMenu();
-        
-        for (int i = 1; i < menu.size()+1; i++) {
-            newMap.add(MenuDAO.getMenuById(i));
-        } 
-        
-        request.setAttribute("menu", newMap);
-        widok = "menu";
         return widok;
     }
 }

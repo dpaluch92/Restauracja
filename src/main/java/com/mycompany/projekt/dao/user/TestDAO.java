@@ -6,9 +6,7 @@
 package com.mycompany.projekt.dao.user;
 
 import com.mycompany.projekt.db.HibernateUtil;
-import com.mycompany.projekt.db.Menu;
 import com.mycompany.projekt.db.UserDb;
-import org.hibernate.HibernateException;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
