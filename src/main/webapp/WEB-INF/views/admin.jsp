@@ -48,7 +48,7 @@
                                 <td>${user.userGender}</td>
                                 <td>${user.userCity}</td>
                                 <td>${user.userAddress}</td>
-                                <td><a href="#" class="btn btn-primary btn-mini btn-box">Edytuj</a></td>
+                                <td><a href="/SSI_spring/student/edytuj/${user.userId}" class="btn btn-primary btn-mini btn-box">Edytuj</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>

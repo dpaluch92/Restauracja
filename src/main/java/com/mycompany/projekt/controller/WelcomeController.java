@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class WelcomeController {
 
-    List<UserDb> users;
-
     @RequestMapping(method = RequestMethod.GET)
     public String welcome(HttpServletRequest request) {
         String widok = "";
@@ -29,22 +27,6 @@ public class WelcomeController {
 
         request.setAttribute("promo", newMap);
         widok = "welcome";
-        return widok;
-    }
-
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String admin(HttpServletRequest request) throws Exception {
-        String widok = "";
-
-        List<UserDb> newMap = new ArrayList<UserDb>();
-        users = UserDAO.getAllUsers();
-
-        for (int i = 1; i < users.size() + 1; i++) {
-            newMap.add(UserDAO.getUserById(i));
-        }
-
-        request.setAttribute("users", newMap);
-        widok = "admin";
         return widok;
     }
 }
