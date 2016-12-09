@@ -38,7 +38,7 @@ public class UserDAO {
     public static void insertUser(UserDb user) {
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        session.save(user);
+        session.saveOrUpdate(user);
         tx.commit();
         session.close();
     }

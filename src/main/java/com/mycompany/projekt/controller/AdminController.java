@@ -38,7 +38,7 @@ public class AdminController {
     @RequestMapping(value = "/edytuj/{id}")
     public ModelAndView edytuj(@PathVariable String id) {
         ModelMap map = new ModelMap();
-        map.put("userz", users.get(Integer.parseInt(id)));
+        map.put("userz", users.get(Integer.parseInt(id)-1));
         return new ModelAndView("zarejestruj", map);
     }
 
