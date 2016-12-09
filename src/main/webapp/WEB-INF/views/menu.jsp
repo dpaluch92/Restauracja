@@ -1,5 +1,5 @@
 <%-- 
-    Document   : galeria
+    Document   : menu
     Created on : 2016-11-30, 16:33:41
     Author     : Dominik
 --%>
