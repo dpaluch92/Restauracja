@@ -37,16 +37,10 @@ public class ZarejestrujController {
             return createUser();
         } else {
             ModelMap map = new ModelMap();
-            List<UserDb> newMap = new ArrayList<UserDb>();
+            UserDAO.insertUser(user);
             users = UserDAO.getAllUsers();
-
-            for (int i = 1; i < users.size() + 1; i++) {
-                newMap.add(UserDAO.getUserById(i));
-            }
-
-            newMap.add(UserDAO.insertUser(user));
-            map.put("users", newMap);
-            return new ModelAndView("welcome", map);
+            map.put("user1", users);
+            return new ModelAndView("redirect:/", map);
         }
     }
 

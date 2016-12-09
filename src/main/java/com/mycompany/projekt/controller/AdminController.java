@@ -8,6 +8,7 @@ package com.mycompany.projekt.controller;
 import com.mycompany.projekt.dao.user.UserDAO;
 import com.mycompany.projekt.db.UserDb;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -24,28 +25,32 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
     List<UserDb> users;
-    
+
     @RequestMapping(method = RequestMethod.GET)
     public String admin(HttpServletRequest request) throws Exception {
-        String widok = "";
-
-        List<UserDb> newMap = new ArrayList<UserDb>();
         users = UserDAO.getAllUsers();
-
-        for (int i = 1; i < users.size() + 1; i++) {
-            newMap.add(UserDAO.getUserById(i));
-        }
-
-        request.setAttribute("users", newMap);
-        widok = "admin";
-        return widok;
+        request.setAttribute("users", users);
+        return "admin";
     }
-    
+
     @RequestMapping(value = "/edytuj/{id}")
     public ModelAndView edytuj(@PathVariable String id) {
         ModelMap map = new ModelMap();
         map.put("userz", users.get(Integer.parseInt(id)));
         return new ModelAndView("zarejestruj", map);
+    }
+
+    @RequestMapping(value = "/usun/{id}")
+    public String usun(@PathVariable String id, HttpServletRequest request) throws Exception {
+        usunZBazy(id);
+        users = UserDAO.getAllUsers();
+        request.setAttribute("users", users);
+        return "admin";
+    }
+
+    public void usunZBazy(String id) {
+        UserDAO.deleteUser(id);
     }
 }

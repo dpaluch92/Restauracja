@@ -4,7 +4,7 @@
     Author     : Dominik
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="windows-1250"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,13 +24,12 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Login</th>
-                            <th>Has³o</th>
+                            <th>HasÅ‚o</th>
                             <th>Imie</th>
                             <th>Nazwisko</th>
                             <th>Wiek</th>
-                            <th>P³eæ</th>
+                            <th>PÅ‚eÄ‡</th>
                             <th>Miasto</th>
                             <th>Adres</th>
                             <th>Operacje<th>
@@ -39,7 +38,6 @@
                     <tbody>
                         <c:forEach items="${users}" var="user">
                             <tr>
-                                <td>${user.userId}</td>
                                 <td>${user.userLogin}</td>
                                 <td>${user.userPassword}</td>
                                 <td>${user.userName}</td>
@@ -48,7 +46,8 @@
                                 <td>${user.userGender}</td>
                                 <td>${user.userCity}</td>
                                 <td>${user.userAddress}</td>
-                                <td><a href="/SSI_spring/student/edytuj/${user.userId}" class="btn btn-primary btn-mini btn-box">Edytuj</a></td>
+                                <td><a href="/Paluch/admin/edytuj/${user.userId}" class="btn btn-primary btn-mini btn-box">Edytuj</a></td>
+                                <td><a href="/Paluch/admin/usun/${user.userId}" class="btn btn-primary btn-mini btn-box">UsuÅ„</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>

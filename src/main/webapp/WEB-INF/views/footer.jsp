@@ -8,8 +8,7 @@
 
 <div id="footer">
 <div class="container">
-    <div class="row">
-        <hr />
+    <div class="row" style="padding:50px 0;">
         <div class="col-sm-4">
             <h3>Menu</h3>
             <ul class="nav">

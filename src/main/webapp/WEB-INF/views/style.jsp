@@ -12,6 +12,7 @@
         background-color: #222;
         width: 100%;
         margin-top: 100px;
+        height: 340px;
     }
     
     #footer h3{

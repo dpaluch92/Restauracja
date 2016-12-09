@@ -1,9 +1,7 @@
 package com.mycompany.projekt.controller;
 
 import com.mycompany.projekt.dao.menu.MenuDAO;
-import com.mycompany.projekt.dao.user.UserDAO;
 import com.mycompany.projekt.db.Menu;
-import com.mycompany.projekt.db.UserDb;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
