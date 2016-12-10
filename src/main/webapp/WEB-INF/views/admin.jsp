@@ -3,8 +3,8 @@
     Created on : 2016-12-07, 20:09:22
     Author     : Dominik
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,7 +17,7 @@
     </head>
     <body>
 
-        <jsp:include page="navigation.jsp" />
+        <jsp:include page="nav_logged.jsp" />
 
         <div class="container">
             <div class="row">

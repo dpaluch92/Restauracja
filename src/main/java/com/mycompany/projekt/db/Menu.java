@@ -71,5 +71,4 @@ public class Menu implements java.io.Serializable {
     public void setOrderses(Set<Orders> orderses) {
         this.orderses = orderses;
     }
-
 }

@@ -5,10 +5,14 @@
  */
 package com.mycompany.projekt.dao.menu;
 
+import static com.mycompany.projekt.dao.user.UserDAO.session;
 import com.mycompany.projekt.db.HibernateUtil;
 import com.mycompany.projekt.db.Menu;
+import com.mycompany.projekt.db.UserDb;
 import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
@@ -41,15 +45,29 @@ public class MenuDAO {
         } catch (HibernateException e) {
             throw e;
         }
-        ArrayList data = (ArrayList) session.createSQLQuery("select * from Menu").list();
+        Query q = session.createQuery("from Menu");
+        List reviews = q.list();
         session.close();
-        return data;
+        return (ArrayList<Menu>) reviews;
     }
 
     public static void insertMenu(Menu menu) {
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        session.save(menu);
+        session.saveOrUpdate(menu);
+        tx.commit();
+        session.close();
+    }
+    
+    public static void deleteMenu(String id) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        Object persistentInstance = session.load(Menu.class, Integer.parseInt(id));
+        if (persistentInstance != null) {
+            session.delete(persistentInstance);
+        }
+
         tx.commit();
         session.close();
     }

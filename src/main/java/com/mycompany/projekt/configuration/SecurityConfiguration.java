@@ -11,24 +11,28 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	
-	@Autowired
-	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("bill").password("abc123").roles("USER");
-		auth.inMemoryAuthentication().withUser("admin").password("root123").roles("ADMIN");
-		auth.inMemoryAuthentication().withUser("dba").password("root123").roles("ADMIN","DBA");
-	}
-	
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-	  
-	  http.authorizeRequests()
-	  	.antMatchers("/", "/home").permitAll()
-	  	.antMatchers("/admin/**").access("hasRole('ADMIN')")
-	  	.antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
-	  	.and().formLogin().loginPage("/login")
-	  	.usernameParameter("username").passwordParameter("password")
-	  	.and().csrf()
-	  	.and().exceptionHandling().accessDeniedPage("/Access_Denied");
-	}
+
+
+    @Autowired
+    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.inMemoryAuthentication().withUser("bill").password("abc123").roles("USER");
+        auth.inMemoryAuthentication().withUser("admin").password("root123").roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("dba").password("root123").roles("DBA");
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        http.authorizeRequests()
+                .antMatchers("/", "/home").permitAll()
+                .antMatchers("/user/**").access("hasRole('USER')")
+                .antMatchers("/admin/**").access("hasRole('ADMIN')")
+                .antMatchers("/dba/**").access("hasRole('DBA')")
+                .and().formLogin().loginPage("/zaloguj")
+                .usernameParameter("username").passwordParameter("password")
+                // przy tym sie wykurwia .successHandler(successHandler)
+                .and().csrf()
+                .and().exceptionHandling().accessDeniedPage("/Access_Denied");
+    }
 }

@@ -18,63 +18,63 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/")
 public class WelcomeController {
-
+    List<Menu> menus;
+    
     @RequestMapping(method = RequestMethod.GET)
-    public String welcome(HttpServletRequest request) {
-        String widok = "";
+    public String welcome(HttpServletRequest request) throws Exception {
+        menus = MenuDAO.getAllMenu();
+        List<Menu> promo = menus.subList(0, 4);
+        request.setAttribute("promo", promo);
+        return "welcome";
+    }
 
-        List<Menu> newMap = new ArrayList<Menu>();
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String adminPage(ModelMap model) {
+        model.addAttribute("user", getPrincipal());
+        return "admin";
+    }
 
-        for (int i = 1; i < 5; i++) {
-            newMap.add(MenuDAO.getMenuById(i));
-        }
-
-        request.setAttribute("promo", newMap);
-        widok = "welcome";
-        return widok;
+    @RequestMapping(value = "/db", method = RequestMethod.GET)
+    public String dbaPage(ModelMap model) {
+        model.addAttribute("user", getPrincipal());
+        return "dba";
     }
     
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String adminPage(ModelMap model) {
-		model.addAttribute("user", getPrincipal());
-		return "admin";
-	}
-	
-	@RequestMapping(value = "/db", method = RequestMethod.GET)
-	public String dbaPage(ModelMap model) {
-		model.addAttribute("user", getPrincipal());
-		return "dba";
-	}
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public String userPage(ModelMap model) {
+        model.addAttribute("user", getPrincipal());
+        return "user";
+    }
 
-	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
-	public String accessDeniedPage(ModelMap model) {
-		model.addAttribute("user", getPrincipal());
-		return "accessDenied";
-	}
+    @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
+    public String accessDeniedPage(ModelMap model) {
+        model.addAttribute("user", getPrincipal());
+        return "accessDenied";
+    }
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginPage() {
-		return "login";
-	}
+    @RequestMapping(value = "/zaloguj", method = RequestMethod.GET)
+    public String loginPage() {
+        return "zaloguj";
+    }
 
-	@RequestMapping(value="/logout", method = RequestMethod.GET)
-	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth != null){    
-			new SecurityContextLogoutHandler().logout(request, response, auth);
-		}
-		return "redirect:/login?logout";
-	}
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/zaloguj";
+    }
 
-	private String getPrincipal(){
-		String userName = null;
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    private String getPrincipal() {
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		if (principal instanceof UserDetails) {
-			userName = ((UserDetails)principal).getUsername();
-		} else {
-			userName = principal.toString();
-		}
-		return userName;
-	}
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails) principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
+    }
 }

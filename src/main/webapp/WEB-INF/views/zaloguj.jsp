@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
     <head>
         <title>Logowanie</title>
         <meta charset="UTF-8" />
@@ -24,19 +24,27 @@
             <div class="row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6 well">
+
                     <h2>Formularz logowania</h2>
                     <br />
-                    <form class="form-horizontal">
+                    <form name="f" th:action="@{/login}" method="post" class="form-horizontal">     
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        <div th:if="${param.error}" class="alert alert-error">    
+                            Invalid username and password.
+                        </div>
+                        <div th:if="${param.logout}" class="alert alert-success"> 
+                            You have been logged out.
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2">Login:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="Wpisz login">
+                                <input type="text" name="username" class="form-control" placeholder="Wpisz login">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2">Hasło:</label>
                             <div class="col-sm-10">          
-                                <input type="password" class="form-control" placeholder="Wpisz hasło">
+                                <input type="password" name="password" class="form-control" placeholder="Wpisz hasło">
                             </div>
                         </div>
                         <div class="form-group">        
