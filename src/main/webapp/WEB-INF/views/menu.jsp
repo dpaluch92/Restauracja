@@ -25,7 +25,6 @@
 
         <div class="container">
             <h1>Menu</h1>
-            <hr />
             <div class="row">
                 <table class="table table-hover">
                     <thead>
@@ -37,7 +36,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${menu}" var="m">
+                        <c:forEach items="${menus}" var="m">
                             <tr>
                                 <td>${m.menuId}</td>
                                 <td>${m.mealName}</td>

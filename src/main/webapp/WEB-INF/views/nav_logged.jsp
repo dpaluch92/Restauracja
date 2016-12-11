@@ -18,7 +18,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="<c:url value="/logout" />">Logout</a></li>
+                <li><p style="padding:15px; margin:0px; color: white;">Witaj ${user}</p></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->

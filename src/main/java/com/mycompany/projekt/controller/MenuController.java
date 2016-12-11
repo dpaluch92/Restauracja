@@ -22,24 +22,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/menu")
 public class MenuController {
 
-    List<Menu> menu;
+    List<Menu> menus;
 
     @RequestMapping(method = RequestMethod.GET)
     public String menu(HttpServletRequest request) throws Exception {
-        String widok = "";
-
-        List<Menu> newMap = new ArrayList<Menu>();
-        menu = MenuDAO.getAllMenu();
-        
-        
-        for (int i = 1; i < menu.size() + 1; i++) {
-            newMap.add(MenuDAO.getMenuById(i));
-        }
-
-        request.setAttribute("menu", newMap);
-        widok = "menu";
-        return widok;
+        menus = MenuDAO.getAllMenu();
+        request.setAttribute("menus", menus);
+        return "menu";
     }
-    
-    
+
 }

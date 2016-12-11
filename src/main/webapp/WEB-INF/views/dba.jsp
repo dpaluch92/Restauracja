@@ -11,28 +11,47 @@
     </head>
     <body>
         <jsp:include page="nav_logged.jsp" />
+
+
         <div class="container">
-        <div class="row">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Nazwa Produktu</th>
-                            <th>Cena</th>
-                            <th>Waga</th>
-                            <th>Operacje<th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${menus}" var="menu">
-                            <tr>
-                                <td>${menu.mealName}</td>
-                                <td>${menu.price}</td>
-                                <td>${menu.weight}</td>
-                                <td><a href="/Paluch/dba/usun/${menu.menuId}" class="btn btn-primary btn-mini btn-box">Usuń</a></td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <ul id="tabs" class="nav nav-pills nav-stacked well well-sm" data-tabs="tabs">
+                        <li><a href="#profil" data-toggle="tab">Profil</a></li>
+                        <li><a href="#zarzadzaj" data-toggle="tab">Zarządzaj</a></li>
+                        <li><a href="<c:url value="/logout" />">Wyloguj</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-9">
+                    <div id="my-tab-content" class="tab-content">
+                        <div id="profil" class="tab-pane">
+
+                        </div>
+                        <div id="zarzadzaj" class="tab-pane">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Nazwa Produktu</th>
+                                        <th>Cena</th>
+                                        <th>Waga</th>
+                                        <th>Operacje</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${menus}" var="menu">
+                                        <tr>
+                                            <td>${menu.mealName}</td>
+                                            <td>${menu.price}</td>
+                                            <td>${menu.weight}</td>
+                                            <td><a href="/Paluch/dba/usun/${menu.menuId}" class="btn btn-primary btn-mini btn-box">Usuń</a></td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

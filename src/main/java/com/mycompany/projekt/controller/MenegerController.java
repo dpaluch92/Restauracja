@@ -11,6 +11,8 @@ import com.mycompany.projekt.db.Menu;
 import com.mycompany.projekt.db.UserDb;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,9 +30,10 @@ public class MenegerController {
     List<Menu> menus;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String meneger(HttpServletRequest request) throws Exception {
+    public String meneger(HttpServletRequest request,ModelMap model) throws Exception {
         menus = MenuDAO.getAllMenu();
         request.setAttribute("menus", menus);
+        model.addAttribute("user", getPrincipal());
         return "dba";
     }
 
@@ -59,5 +62,17 @@ public class MenegerController {
 
     public void usunZBazy(String id) {
         MenuDAO.deleteMenu(id);
+    }
+    
+    private String getPrincipal() {
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails) principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
     }
 }
