@@ -34,6 +34,8 @@
             <scope>provided</scope>
         </dependency>
         
+        
+        
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>javax.servlet.jsp-api</artifactId>
@@ -94,12 +96,14 @@
             <version>1.1.0.Final</version>
             <type>jar</type>
         </dependency>
+        
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>4.0.1.RELEASE</version>
             <type>jar</type>
         </dependency>
+
     </dependencies>
 
     <build>

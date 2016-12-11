@@ -18,5 +18,6 @@
     </head>
     <body>
         <jsp:include page="nav_logged.jsp" />
+        <a href="<c:url value="/logout" />">Wyloguj</a>
     </body>
 </html>

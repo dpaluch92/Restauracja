@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
-
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -24,12 +23,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        
         http.authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
                 .antMatchers("/user/**").access("hasRole('USER')")
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
                 .antMatchers("/dba/**").access("hasRole('DBA')")
-                .and().formLogin().loginPage("/zaloguj")
+                .and().formLogin().loginPage("/zaloguj").successHandler(new CustomSuccessHandler())
                 .usernameParameter("username").passwordParameter("password")
                 // przy tym sie wykurwia .successHandler(successHandler)
                 .and().csrf()

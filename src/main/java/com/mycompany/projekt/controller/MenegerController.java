@@ -6,9 +6,7 @@
 package com.mycompany.projekt.controller;
 
 import com.mycompany.projekt.dao.menu.MenuDAO;
-import com.mycompany.projekt.dao.user.UserDAO;
 import com.mycompany.projekt.db.Menu;
-import com.mycompany.projekt.db.UserDb;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -53,10 +51,11 @@ public class MenegerController {
     }
 
     @RequestMapping(value = "/usun/{id}")
-    public String usun(@PathVariable String id, HttpServletRequest request) throws Exception {
+    public String usun(@PathVariable String id, HttpServletRequest request, ModelMap model) throws Exception {
         usunZBazy(id);
         menus = MenuDAO.getAllMenu();
         request.setAttribute("menus", menus);
+        model.addAttribute("user", getPrincipal());
         return "dba";
     }
 
