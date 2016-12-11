@@ -1,5 +1,8 @@
 package com.mycompany.projekt.configuration;
 
+import com.mycompany.projekt.dao.user.UserDAO;
+import com.mycompany.projekt.db.UserDb;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,13 +14,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-
+    List<UserDb> users;
+    
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.inMemoryAuthentication().withUser("bill").password("abc123").roles("USER");
-        auth.inMemoryAuthentication().withUser("admin").password("root123").roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("dba").password("root123").roles("DBA");
+        users = UserDAO.getAllUsers();
+        
+        for(UserDb u : users){
+            if(u.getUserRole()==0){
+                auth.inMemoryAuthentication().withUser(u.getUserLogin()).password(u.getUserPassword()).roles("ADMIN");
+            } else if (u.getUserRole()==1){
+                auth.inMemoryAuthentication().withUser(u.getUserLogin()).password(u.getUserPassword()).roles("DBA");
+            } else if (u.getUserRole()==3){
+                auth.inMemoryAuthentication().withUser(u.getUserLogin()).password(u.getUserPassword()).roles("USER");
+            }
+        }
     }
 
     @Override

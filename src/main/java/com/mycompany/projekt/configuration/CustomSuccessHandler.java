@@ -7,12 +7,9 @@ package com.mycompany.projekt.configuration;
 
 import java.io.IOException;
 import java.util.Collection;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.apache.commons.logging.LogFactory;
-import org.hibernate.validator.internal.util.logging.Log;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -49,6 +46,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
     protected String determineTargetUrl(Authentication authentication) {
         boolean isUser = false;
         boolean isAdmin = false;
+        boolean isDba = false;
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (GrantedAuthority grantedAuthority : authorities) {
             if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
@@ -57,6 +55,9 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
             } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
                 isAdmin = true;
                 break;
+            } else if (grantedAuthority.getAuthority().equals("ROLE_DBA")) {
+                isDba = true;
+                break;
             }
         }
  
@@ -64,6 +65,8 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
             return "/user";
         } else if (isAdmin) {
             return "/admin";
+        } else if (isDba) {
+            return "/dba";
         } else {
             throw new IllegalStateException();
         }
