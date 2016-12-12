@@ -19,7 +19,7 @@
     <body>
 
         <jsp:include page="nav_logged.jsp" />
-        
+
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
@@ -32,7 +32,7 @@
                 <div class="col-sm-9">
                     <div id="my-tab-content" class="tab-content">
                         <div id="profil" class="tab-pane">
-
+                            <jsp:include page="profile.jsp" />
                         </div>
                         <div id="zarzadzaj" class="tab-pane">
                             <table class="table table-hover">
@@ -50,18 +50,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${users}" var="user">
+                                    <c:forEach items="${users}" var="u">
                                         <tr>
-                                            <td>${user.userLogin}</td>
-                                            <td>${user.userPassword}</td>
-                                            <td>${user.userName}</td>
-                                            <td>${user.userSurname}</td>
-                                            <td>${user.userAge}</td>
-                                            <td>${user.userGender}</td>
-                                            <td>${user.userCity}</td>
-                                            <td>${user.userAddress}</td>
-                                            <td><a href="/Paluch/admin/edytuj/${user.userId}" class="btn btn-primary btn-mini btn-box">Edytuj</a></td>
-                                            <td><a href="/Paluch/admin/usun/${user.userId}" class="btn btn-primary btn-mini btn-box">Usuń</a></td>
+                                            <td>${u.userLogin}</td>
+                                            <td>${u.userPassword}</td>
+                                            <td>${u.userName}</td>
+                                            <td>${u.userSurname}</td>
+                                            <td>${u.userAge}</td>
+                                            <td>${u.userGender}</td>
+                                            <td>${u.userCity}</td>
+                                            <td>${u.userAddress}</td>
+                                            <td><a href="/Paluch/admin/edytuj/${u.userId}" class="btn btn-primary btn-mini btn-box">Edytuj</a></td>
+                                            <td><a href="/Paluch/admin/usun/${u.userId}" class="btn btn-primary btn-mini btn-box">Usuń</a></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

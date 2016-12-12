@@ -18,7 +18,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><p style="padding:15px; margin:0px; color: white;">Witaj ${user}</p></li>
+                <li><p style="padding:15px; margin:0px; color: white;">Witaj ${user.userName}</p></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->

@@ -1,8 +1,9 @@
 package com.mycompany.projekt.controller;
 
 import com.mycompany.projekt.dao.menu.MenuDAO;
+import com.mycompany.projekt.dao.user.UserDAO;
 import com.mycompany.projekt.db.Menu;
-import java.util.ArrayList;
+import com.mycompany.projekt.db.UserDb;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,20 +19,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/")
 public class WelcomeController {
+
     List<Menu> menus;
-    
+    List<UserDb> users;
+
     @RequestMapping(method = RequestMethod.GET)
     public String welcome(HttpServletRequest request) throws Exception {
         menus = MenuDAO.getAllMenu();
         List<Menu> promo = menus.subList(0, 4);
         request.setAttribute("promo", promo);
         return "welcome";
-    }
-    
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String userPage(ModelMap model) {
-        model.addAttribute("user", getPrincipal());
-        return "user";
     }
 
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
@@ -41,7 +38,9 @@ public class WelcomeController {
     }
 
     @RequestMapping(value = "/zaloguj", method = RequestMethod.GET)
-    public String loginPage() {
+    public String loginPage(ModelMap model) throws Exception {
+        users = UserDAO.getAllUsers();
+        model.addAttribute("users", users);
         return "zaloguj";
     }
 

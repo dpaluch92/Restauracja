@@ -6,7 +6,9 @@
 package com.mycompany.projekt.controller;
 
 import com.mycompany.projekt.dao.menu.MenuDAO;
+import com.mycompany.projekt.dao.user.UserDAO;
 import com.mycompany.projekt.db.Menu;
+import com.mycompany.projekt.db.UserDb;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,13 +27,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/dba")
 public class MenegerController {
+
     List<Menu> menus;
+    List<UserDb> users;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String meneger(HttpServletRequest request,ModelMap model) throws Exception {
+    public String meneger(HttpServletRequest request, ModelMap model) throws Exception {
         menus = MenuDAO.getAllMenu();
+
         request.setAttribute("menus", menus);
-        model.addAttribute("user", getPrincipal());
+        model.addAttribute("user", menagerUser());
         return "dba";
     }
 
@@ -39,13 +44,13 @@ public class MenegerController {
     public ModelAndView edytuj(@PathVariable String id) {
         ModelMap map = new ModelMap();
         Menu temp = null;
-        
-        for(Menu u : menus){
-            if(u.getMenuId()==Integer.parseInt(id)){
+
+        for (Menu u : menus) {
+            if (u.getMenuId() == Integer.parseInt(id)) {
                 temp = u;
             }
         }
-        
+
         map.put("menuz", temp);
         return new ModelAndView("nowyProdukt", map);
     }
@@ -55,23 +60,23 @@ public class MenegerController {
         usunZBazy(id);
         menus = MenuDAO.getAllMenu();
         request.setAttribute("menus", menus);
-        model.addAttribute("user", getPrincipal());
+        model.addAttribute("user", menagerUser());
         return "dba";
     }
 
     public void usunZBazy(String id) {
         MenuDAO.deleteMenu(id);
     }
-    
-    private String getPrincipal() {
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails) principal).getUsername();
-        } else {
-            userName = principal.toString();
+
+    private UserDb menagerUser() throws Exception {
+        users = UserDAO.getAllUsers();
+        UserDb temp = null;
+        for (UserDb u : users) {
+            if (u.getUserRole() == 1) {
+                temp = u;
+            }
         }
-        return userName;
+        return temp;
     }
 }

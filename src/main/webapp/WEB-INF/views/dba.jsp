@@ -26,7 +26,7 @@
                 <div class="col-sm-9">
                     <div id="my-tab-content" class="tab-content">
                         <div id="profil" class="tab-pane">
-
+                            <jsp:include page="profile.jsp" />
                         </div>
                         <div id="zarzadzaj" class="tab-pane">
                             <table class="table table-hover">

@@ -30,6 +30,7 @@
                     <h2>Formularz rejestracji</h2>
                     <p>- Wszystkie pola muszą być wypełnione.</p>
                     <p>- Wszystkie pola tekstowe muszą mieć co najmniej pięć znaków.</p>
+                    <p>- Login musi być unikatowy.</p>
                     <form:form commandName="userz" method="post" action="/Paluch/zarejestruj" id="userForm" >   
                         <form:hidden path="userId" id="userId" />
                         <form:hidden path="userRole" id="userRole" value="3" />

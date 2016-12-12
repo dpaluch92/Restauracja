@@ -9,6 +9,7 @@ import com.mycompany.projekt.dao.user.UserDAO;
 import com.mycompany.projekt.db.UserDb;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -29,15 +30,15 @@ public class AdminController {
     List<UserDb> users;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String admin(HttpServletRequest request,ModelMap model) throws Exception {
-        users = UserDAO.getAllUsers();
+    public String admin(HttpSession session ,HttpServletRequest request,ModelMap model) throws Exception {
+        
         request.setAttribute("users", users);
-        model.addAttribute("user", getPrincipal());
+        model.addAttribute("user", adminUser());
         return "admin";
     }
 
     @RequestMapping(value = "/edytuj/{id}")
-    public ModelAndView edytuj(@PathVariable String id) {
+    public ModelAndView edytuj(@PathVariable String id) throws Exception {
         ModelMap map = new ModelMap();
         UserDb temp = null;
 
@@ -48,7 +49,7 @@ public class AdminController {
         }
 
         map.put("userz", temp);
-        map.addAttribute("user", getPrincipal());
+        map.addAttribute("user", adminUser());
         return new ModelAndView("zarejestruj", map);
     }
 
@@ -57,7 +58,7 @@ public class AdminController {
         usunZBazy(id);
         users = UserDAO.getAllUsers();
         request.setAttribute("users", users);
-        model.addAttribute("user", getPrincipal());
+        model.addAttribute("user", adminUser());
         return "admin";
     }
 
@@ -65,16 +66,15 @@ public class AdminController {
         UserDAO.deleteUser(id);
     }
     
-    private String getPrincipal() {
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails) principal).getUsername();
-        } else {
-            userName = principal.toString();
+    private UserDb adminUser() throws Exception{
+        users = UserDAO.getAllUsers();
+        UserDb temp = null;
+        for (UserDb u : users) {
+            if (u.getUserRole()==0) {
+                temp = u;
+            }
         }
-        return userName;
+        return temp;
     }
     
 }
