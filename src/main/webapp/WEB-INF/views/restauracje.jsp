@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <jsp:include page="style.jsp" />
     </head>
     <body>
 
@@ -19,17 +20,17 @@
                 <div class="col-sm-4 text-center"> 
                     <h2>Informacje</h2>
                     <p>Chcesz wiedzieć wiecej o nas kliknij tutaj :</p>
-                    <a href="info.jsp" class="btn btn-info btn-lg" >Informacja</a>
+                    <a href="info" class="btn btn-info btn-lg" >Informacja</a>
                 </div>
                 <div class="col-sm-4 text-center">
-                    <h2>Galeria</h2>
-                    <p>Zobacz galerie naszych lokali :</p>
-                    <a href="galeria.jsp" class="btn btn-info btn-lg">Lokale</a>
+                    <h2>Menu</h2>
+                    <p>Zobacz Menu naszych lokali :</p>
+                    <a href="menu" class="btn btn-info btn-lg">Menu</a>
                 </div>
                 <div class="col-sm-4 text-center">
                     <h2>Kontakt</h2>
                     <p>Chcesz nawiązać kontakt? Skontaktuj sie z nami :</p>
-                    <a href="kontakt.jsp" class="btn btn-info btn-lg">Kontakt</a>
+                    <a href="kontakt" class="btn btn-info btn-lg">Kontakt</a>
                 </div>
             </div>
         </div>

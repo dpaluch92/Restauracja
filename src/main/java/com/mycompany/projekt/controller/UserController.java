@@ -5,7 +5,9 @@
  */
 package com.mycompany.projekt.controller;
 
+import com.mycompany.projekt.dao.menu.MenuDAO;
 import com.mycompany.projekt.dao.user.UserDAO;
+import com.mycompany.projekt.db.Menu;
 import com.mycompany.projekt.db.UserDb;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +16,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -26,11 +30,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserController {
 
     List<UserDb> users;
-
+    List<Menu> menus;
     @RequestMapping(method = RequestMethod.GET)
     public String user(HttpSession session, HttpServletRequest request, ModelMap model) throws Exception {
-
+        menus = MenuDAO.getAllMenu();
+        request.setAttribute("menus", menus);
         model.addAttribute("user", normalUser());
+        
         return "user";
     }
 
@@ -55,5 +61,21 @@ public class UserController {
             userName = principal.toString();
         }
         return userName;
+    }
+    
+    @RequestMapping(value = "/edytuj/{id}")
+    public ModelAndView edytuj(@PathVariable String id) throws Exception {
+        ModelMap map = new ModelMap();
+        UserDb temp = null;
+
+        for (UserDb u : users) {
+            if (u.getUserId() == Integer.parseInt(id)) {
+                temp = u;
+            }
+        }
+
+        map.put("userz", temp);
+        map.addAttribute("user", normalUser());
+        return new ModelAndView("zarejestruj", map);
     }
 }

@@ -33,7 +33,7 @@
             <h3>Informacje</h3>
             <ul class="nav">
                 <hr />
-                <li><a href="restauracje.jsp">Restauracje</a></li>
+                <li><a href="restauracje">Restauracje</a></li>
                 <hr />
                 <li><a href="#">Regulamin</a></li>
                 <hr />

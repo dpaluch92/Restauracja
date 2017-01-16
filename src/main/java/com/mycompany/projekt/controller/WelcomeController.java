@@ -36,7 +36,25 @@ public class WelcomeController {
         model.addAttribute("user", getPrincipal());
         return "accessDenied";
     }
+    
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    public String infoPage(ModelMap model) {
+        
+        return "info";
+    }
 
+    @RequestMapping(value = "/kontakt", method = RequestMethod.GET)
+    public String kontaktPage(ModelMap model) {
+        
+        return "kontakt";
+    }
+    
+    @RequestMapping(value = "/restauracje", method = RequestMethod.GET)
+    public String restauracjePage(ModelMap model) {
+        
+        return "restauracje";
+    }
+    
     @RequestMapping(value = "/zaloguj", method = RequestMethod.GET)
     public String loginPage(ModelMap model) throws Exception {
         users = UserDAO.getAllUsers();
