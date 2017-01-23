@@ -5,6 +5,7 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,6 +27,7 @@
                     <ul id="tabs" class="nav nav-pills nav-stacked well well-sm" data-tabs="tabs">
                         <li><a href="#profil" data-toggle="tab">Profil</a></li>
                         <li><a href="#zarzadzaj" data-toggle="tab">Zarządzaj</a></li>
+                        <li><a href="<c:url value="admin/dodaj" />">Dodaj użytkownika</a></li>
                         <li><a href="<c:url value="/logout" />">Wyloguj</a></li>
                     </ul>
                 </div>

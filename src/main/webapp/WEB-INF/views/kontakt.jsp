@@ -23,7 +23,8 @@
         <div class="container">
             <h1>Kontakt</h1>
             <hr />
-            <p>Proszę kontaktować sie z nami drogą mailową na restauracja@projekt.pl</p>
+            <p>Mail do restauracji : restauracja@projekt.pl</p>
+            <p>Telefon : 444 444 444</p>
         </div>
     </body>
 </html>

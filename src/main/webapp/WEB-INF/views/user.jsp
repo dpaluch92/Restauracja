@@ -26,6 +26,7 @@
                     <ul id="tabs" class="nav nav-pills nav-stacked well well-sm" data-tabs="tabs">
                         <li><a href="#profil" data-toggle="tab">Profil</a></li>
                         <li><a href="#zamow" data-toggle="tab">Zamów</a></li>
+                        <li><a href="<c:url value="/user/edytuj/${user.userId}" />">Edycja</a></li>
                         <li><a href="<c:url value="/logout" />">Wyloguj</a></li>
                     </ul>
                 </div>

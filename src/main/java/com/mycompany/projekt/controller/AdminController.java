@@ -9,11 +9,13 @@ import com.mycompany.projekt.dao.user.UserDAO;
 import com.mycompany.projekt.db.UserDb;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,12 +31,32 @@ public class AdminController {
 
     List<UserDb> users;
 
+    @RequestMapping(method = RequestMethod.POST)
+    public ModelAndView saveAdmUser(@Valid @ModelAttribute("UserDb") UserDb user, BindingResult result,
+            HttpServletRequest request, HttpServletResponse response) throws Exception {
+ 
+            ModelMap map = new ModelMap();
+            UserDAO.insertUser(user);
+            users = UserDAO.getAllUsers();
+            map.put("user1", users);
+            return new ModelAndView("redirect:/admin", map);
+    }
+    
+     @RequestMapping(value="/dodaj")
+     public ModelAndView dodaj(ModelMap map){
+         UserDb user = new UserDb();
+         map.put("userz", user);
+         return new ModelAndView("userrej", map);
+     }
+    
     @RequestMapping(method = RequestMethod.GET)
-    public String admin(HttpSession session ,HttpServletRequest request,ModelMap model) throws Exception {
+    public ModelAndView admin(HttpSession session ,HttpServletRequest request,ModelMap model) throws Exception {
+        
+        ModelMap map = new ModelMap();
         
         request.setAttribute("users", users);
         model.addAttribute("user", adminUser());
-        return "admin";
+        return new ModelAndView("admin", map);
     }
 
     @RequestMapping(value = "/edytuj/{id}")
